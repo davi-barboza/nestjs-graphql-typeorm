@@ -1,0 +1,51 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+input CreateProdutoInput {
+  produtoId: String!
+  valorUnitario: Float!
+}
+
+input CreateUserInput {
+  email: String
+  nome: String!
+}
+
+type Mutation {
+  createProduto(createProdutoInput: CreateProdutoInput!): Produto!
+  createUser(createUserInput: CreateUserInput!): User!
+  removeProduto(id: Int!): Produto!
+  removeUser(id: Int!): User!
+  updateProduto(updateProdutoInput: UpdateProdutoInput!): Produto!
+  updateUser(updateUserInput: UpdateUserInput!): User!
+}
+
+type Produto {
+  produtoId: String!
+  valorUnitario: Float!
+}
+
+type Query {
+  produto(id: Int!): Produto!
+  produtos: [Produto!]!
+  user(id: Int!): User!
+  users: [User!]!
+}
+
+input UpdateProdutoInput {
+  produtoId: String!
+  valorUnitario: Float!
+}
+
+input UpdateUserInput {
+  email: String
+  id: Int!
+  nome: String!
+}
+
+type User {
+  email: String
+  id: Int!
+  nome: String!
+}
