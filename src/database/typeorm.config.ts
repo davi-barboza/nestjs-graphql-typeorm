@@ -18,6 +18,7 @@ export const typeOrmConfig: TypeOrmModuleOptions = {
   password: process.env.TYPEORM_PASSWORD,
   database: process.env.TYPEORM_DATABASE,
   migrationsRun: true,
+  autoLoadEntities: true,
   entities: [join(__dirname + '/../../dist/**/entities/*.entity.js')],
   migrations: [join(__dirname + '/migrations/*.js')],
   cli: {
