@@ -25,4 +25,3 @@ export const typeOrmConfig: TypeOrmModuleOptions = {
     migrationsDir: 'src/database/migrations',
   },
 };
-console.log(typeOrmConfig);

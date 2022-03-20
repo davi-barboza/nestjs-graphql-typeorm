@@ -9,8 +9,8 @@ export class UsersResolver {
   constructor(private readonly usersService: UsersService) {}
 
   @Mutation(() => User)
-  createUser(@Args('createUserInput') createUserInput: CreateUserInput) {
-    return this.usersService.create(createUserInput);
+  async createUser(@Args('createUserInput') createUserInput: CreateUserInput) {
+    return await this.usersService.create(createUserInput);
   }
 
   @Query(() => [User], { name: 'users' })
@@ -19,17 +19,19 @@ export class UsersResolver {
   }
 
   @Query(() => User, { name: 'user' })
-  findOne(@Args('id', { type: () => Int }) id: number) {
-    return this.usersService.findOne(id);
+  async findOne(@Args('id', { type: () => Int }) id: number) {
+    return await this.usersService.findOne(id);
   }
 
   @Mutation(() => User)
-  updateUser(@Args('updateUserInput') updateUserInput: UpdateUserInput) {
-    return this.usersService.update(updateUserInput);
+  async updateUser(@Args('updateUserInput') updateUserInput: UpdateUserInput): Promise<User> {
+    const user = await this.usersService.update(updateUserInput.id, updateUserInput);
+    return user;
   }
 
-  @Mutation(() => User)
-  removeUser(@Args('id', { type: () => Int }) id: number) {
-    return this.usersService.remove(id);
+  @Mutation(() => Boolean)
+  async removeUser(@Args('id', { type: () => Int }) id: number): Promise<boolean> {
+    const deleted = await this.usersService.remove(id);
+    return deleted;
   }
 }

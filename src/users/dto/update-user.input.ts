@@ -1,14 +1,22 @@
+import { Field, ID, InputType, PartialType } from '@nestjs/graphql';
+import { IsEmail, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 import { CreateUserInput } from './create-user.input';
-import { InputType, Field, Int, PartialType } from '@nestjs/graphql';
 
 @InputType()
 export class UpdateUserInput extends PartialType(CreateUserInput) {
-  @Field(() => Int)
+  @Field(() => ID)
+  @IsNotEmpty({ message: 'Não pode ser vazio' })
   id: number;
 
   @Field()
-  nome: string;
+  @IsString()
+  @IsNotEmpty({ message: 'Não pode ser vazio' })
+  @IsOptional()
+  nome?: string;
 
-  @Field({ nullable: true })
-  email: string;
+  @Field()
+  @IsEmail()
+  @IsNotEmpty({ message: 'Não pode ser vazio' })
+  @IsOptional()
+  email?: string;
 }
