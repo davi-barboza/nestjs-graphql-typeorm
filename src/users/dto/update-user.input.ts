@@ -9,9 +9,9 @@ export class UpdateUserInput extends PartialType(CreateUserInput) {
   id: number;
 
   @Field()
+  @IsOptional()
   @IsString()
   @IsNotEmpty({ message: 'Não pode ser vazio' })
-  @IsOptional()
   nome?: string;
 
   @Field()
@@ -19,4 +19,10 @@ export class UpdateUserInput extends PartialType(CreateUserInput) {
   @IsNotEmpty({ message: 'Não pode ser vazio' })
   @IsOptional()
   email?: string;
+
+  @Field()
+  @IsOptional()
+  @IsString()
+  @IsNotEmpty({ message: 'Password não pode ser vazio' })
+  password?: string;
 }

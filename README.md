@@ -62,7 +62,7 @@ $ npm run test:cov
 
 ```bash
 
-# Sincroniza node_modules 
+# Docker commands 
 
 ## Caso nao tenha o node instalado na máquina
 $ docker cp nest-api:home/api/node_modules/. ./node_modules
@@ -70,8 +70,10 @@ $ docker cp nest-api:home/api/node_modules/. ./node_modules
 ## Caso tenha o node instalado na máquina
 $ npm install or yarn
 
-```
+## Instalar bcrypt para encriptação de senha
+$ docker-compose exec api yarn add bcrypt
 
+```
 ## Support
 
 Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).

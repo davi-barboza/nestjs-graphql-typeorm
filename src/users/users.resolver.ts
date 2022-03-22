@@ -23,6 +23,11 @@ export class UsersResolver {
     return await this.usersService.findOne(id);
   }
 
+  @Query(() => User, { name: 'user' })
+  async findByEmail(@Args('email') email: string) {
+    return await this.usersService.findByEmail(email);
+  }
+
   @Mutation(() => User)
   async updateUser(@Args('updateUserInput') updateUserInput: UpdateUserInput): Promise<User> {
     const user = await this.usersService.update(updateUserInput.id, updateUserInput);
